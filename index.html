@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Space Engineers Contruction Planner</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css" />
+        <script src="scripts.js"></script>
+    </head>
+    <body lang="de">
+        <article>
+            <div id="content">
+                
+                <div id="input">
+                    <header>
+                        <h1>Space Engineers Thruster Calculator</h1>
+                    </header>
+                    <form >
+                        <!-- Grid Size -->
+                         <p style="display: inline;">Grid Size : </p>
+                        <input id="large" type="radio" value="large" name="gridSizeSelection" checked oninput="calculate()">
+                        <label for="large">Large Grid</label>
+                        <input id="small" type="radio" value="small" name="gridSizeSelection" oninput="calculate()">
+                        <label for="small">Small Grid</label>  
+                        <br>
+                        <!-- Shiffsmasse -->
+                        <label for="shipMass">Mass</label>
+                        <input type="number" id="shipMass" inputmode="numeric" oninput="calculate()"/>
+                        <p style="display: inline;"> Kg</label>
+                        <!-- Buffer -->
+                         <br>
+                         <label for="buffer">Buffer</label>
+                         <input type="number" id="buffer" value="20" oninput=calculate() />
+                         <p style="display: inline;">%</p><br>
+                        <!-- Planets -->
+                        <label for="planets">Planets</label>
+                        <input type="range" id="planets" value="0.25" step="0.05" min="0.25" 
+                                max="1.2" oninput="alterPlanetCaption()"
+                                list="planetValues"/>
+                        <p style="display: inline;" id="planetCaption">Moon / Europa / Titan (0.25 G)</p>
+    
+                        <datalist id="planetValues">
+                            <option value="0.25">
+                            <option value="0.9">
+                            <option value="1">
+                            <option value="1.1">
+                            <option value="1.2">
+                        </datalist>
+                    </form>
+                    <Table id="force">
+                        <caption><b>Needed Force</b></caption>
+                        <tr>
+                            <td></td>
+                            <th>Gravitation</th>
+                            <th>Flight Force</th>
+                            <th>Navigation Force</th>
+                        </tr>
+                        <tr>
+                            <th>Force (kN)</th>
+                            <td><p id="resultNeededForce" style="display: inline;">0</p></td>
+                            <td><p id="resultOptimalForce" style="display: inline;">0</p></td>
+                            <td><p id="resultBufferedForce" style="display: inline;">0</p></td>
+                        </tr>                       
+                    </Table>
+                </div>               
+                <div id="output">         
+
+                    <table>
+                        <caption><b>Thruster count to Lift up</b></caption>
+                        <tr>
+                            <td></td>
+                            <th>Large</th>
+                            <th>Small</th>
+                            <th>Flat Large</th>
+                            <th>Flat Small</th>
+                        </tr>
+                        <tr>
+                            <th>Atmospheric Thruster</th>
+                            <td><p id="resultLargeAtmosphericThrusterCount" style="display: inline;">0</p></td>
+                            <td><p id="resultSmallAtmosphericThrusterCount" style="display: inline;">0</p></td>
+                            <td><p id="resultFlatLargeAtmosphericThrusterCount" style="display: inline;">0</p></td>
+                            <td><p id="resultFlatSmallAtmosphericThrusterCount" style="display: inline;">0</p></td>
+                        </tr>
+                        <tr>
+                            <th>Hydrogen Thruster</th>
+                            <td><p id="resultLargeHydrogenThrusterCount" style="display: inline;">0</p></td>
+                            <td><p id="resultSmallHydrogenThrusterCount" style="display: inline;">0</p></td>
+                            <td>---</td>
+                            <td>---</td>
+                        </tr>
+                        <tr>
+                            <th>Ion Thruster</th>
+                            <td><p id="resultLargeIonThrusterCount" style="display: inline;">0</p></td>
+                            <td><p id="resultSmallIonThrusterCount" style="display: inline;">0</p></td>
+                            <td>---</td>
+                            <td>---</td>
+                        </tr>
+                    </table>
+  
+                    <table>
+                        <caption><b>Thruster count to Navigate</b></caption>
+                        <tr>
+                            <td></td>
+                            <th>Large</th>
+                            <th>Small</th>
+                            <th>Flat Large</th>
+                            <th>Flat Small</th>
+                        </tr>
+                        <tr>
+                            <th>Atmospheric Thruster</th>
+                            <td><p id="resultLargeAtmosphericThrusterCountNavigate" style="display: inline;">0</p></td>
+                            <td><p id="resultSmallAtmosphericThrusterCountNavigate" style="display: inline;">0</p></td>
+                            <td><p id="resultFlatLargeAtmosphericThrusterCountNavigate" style="display: inline;">0</p></td>
+                            <td><p id="resultFlatSmallAtmosphericThrusterCountNavigate" style="display: inline;">0</p></td>
+                        </tr>
+                        <tr>
+                            <th>Hydrogen Thruster</th>
+                            <td><p id="resultLargeHydrogenThrusterCountNavigate" style="display: inline;">0</p></td>
+                            <td><p id="resultSmallHydrogenThrusterCountNavigate" style="display: inline;">0</p></td>
+                            <td>---</td>
+                            <td>---</td>
+                        </tr>
+                        <tr>
+                            <th>Ion Thruster</th>
+                            <td><p id="resultLargeIonThrusterCountNavigate" style="display: inline;">0</p></td>
+                            <td><p id="resultSmallIonThrusterCountNavigate" style="display: inline;">0</p></td>
+                            <td>---</td>
+                            <td>---</td>
+                        </tr>
+                    </table>    
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </article>
+    </body>
+</html>
